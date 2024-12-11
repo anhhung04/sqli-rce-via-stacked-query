@@ -1,0 +1,16 @@
+services:
+  db:
+    build:
+      dockerfile_inline: |
+        FROM mysql:8.0-debian
+        RUN apt-get update && apt-get upgrade -y
+        RUN apt-get install -y openssl curl iputils-ping
+
+        ENV MYSQL_ROOT_PASSWORD=dummy
+        ENV MYSQL_DATABASE=app
+        ENV MYSQL_USER=app
+        ENV MYSQL_PASSWORD=dummy
+
+        EXPOSE 3306
+    ports:
+      - 3306:3306

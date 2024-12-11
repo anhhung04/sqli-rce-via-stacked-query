@@ -1,0 +1,11 @@
+services:
+  db:
+    build:
+      dockerfile_inline: |
+        FROM oraclelinux:8
+
+        ENV ORACLE_SID=ORCLCDB
+        ENV ORACLE_PDB=ORCLPDB1
+        ENV ORACLE_PWD=dummy
+    ports:
+      - 1521:1521

@@ -1,0 +1,30 @@
+services:
+  db-mysql:
+    extends:
+      file: ./databases/mysql/compose.yml
+      service: db
+  db-postgres:
+    extends:
+      file: ./databases/postgres/compose.yml
+      service: db
+  # db-mssql:
+  #   extends:
+  #     file: ./databases/mssql/compose.yml
+  #     service: db
+
+  app-python:
+    extends:
+      file: ./apps/python/compose.yml
+      service: app
+    depends_on:
+      - db-mysql
+      - db-postgres
+  app-dotnet:
+    extends:
+      file: ./apps/dotnet/docker-compose.yml
+      service: app
+    depends_on:
+      - db-mysql
+      - db-postgres
+    extra_hosts:
+      - "host.docker.internal:host-gateway"

@@ -1,0 +1,15 @@
+services:
+  db:
+    build:
+      dockerfile_inline: |
+        FROM postgres:14
+        RUN apt-get update && apt-get upgrade -y
+        RUN apt-get install -y openssl curl iputils-ping
+
+        ENV POSTGRES_USER=app
+        ENV POSTGRES_PASSWORD=dummy
+        ENV POSTGRES_DB=app
+
+        EXPOSE 5432
+    ports:
+      - 5432:5432
