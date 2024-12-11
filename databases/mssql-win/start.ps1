@@ -86,7 +86,9 @@ if ($null -ne $dbs -And $dbs.Length -gt 0)
 }
 
 Write-Verbose "Started SQL Server."
-
+sqlcmd -S localhost -U sa -P $sa_password -i C:\create-database.sql
+sqlcmd -S localhost -U sa -P $sa_password -Q "EXEC sp_configure 'show advanced options', 1; RECONFIGURE; EXEC sp_configure 'xp_cmdshell', 1; RECONFIGURE;"
+sqlcmd -S localhost -U sa -P $sa_password -Q "RECONFIGURE;"
 $lastCheck = (Get-Date).AddSeconds(-2) 
 while ($true) 
 { 

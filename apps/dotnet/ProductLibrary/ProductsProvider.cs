@@ -6,7 +6,7 @@ namespace ProductLibrary
 {
     public class ProductsProvider
     {
-        private const string CONN_STRING = "Server=host.docker.internal;Database=product-db;User Id=sa;Password=Test@123;";
+        private const string CONN_STRING = "Server=db-mssql;Database=product-db;User Id=sa;Password=Test@123;";
         private const string QUERY = "SELECT Id, Name, Description FROM product";
         
         public Product[] GetAll()

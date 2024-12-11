@@ -3,7 +3,7 @@ FROM --platform=windows/amd64 mcr.microsoft.com/windows/servercore:1809-amd64
 ENV exe "https://go.microsoft.com/fwlink/?linkid=835677"
 ENV box "https://go.microsoft.com/fwlink/?linkid=835679"
 
-ENV sa_password="_" \
+ENV sa_password="Test@123" \
     attach_dbs="[]" \
     ACCEPT_EULA="_" \
     sa_password_path="C:\ProgramData\Docker\secrets\sa-password"
