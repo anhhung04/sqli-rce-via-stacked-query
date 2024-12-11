@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from db import postgres, mysql, mssql
+import postgres
 
 app = Flask(__name__)
 
@@ -7,14 +7,7 @@ app = Flask(__name__)
 @app.before_request
 def before_request():
     db = request.args.get("db")
-    if db == "mysql":
-        app.db = mysql
-    elif db == "postgres":
-        app.db = postgres
-    elif db == "mssql":
-        app.db = mssql
-    else:
-        app.db = postgres
+    app.db = postgres
 
 
 @app.route("/users", methods=["GET"])
@@ -39,6 +32,4 @@ def get_user():
 
 if __name__ == "__main__":
     postgres.init()
-    mysql.init()
-    mssql.init()
     app.run(host="0")

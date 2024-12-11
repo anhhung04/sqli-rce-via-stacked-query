@@ -1,0 +1,8 @@
+services:
+  db:
+    build: .
+    ports:
+      - "1433:1433"
+    environment:
+      - sa_password=Test@123
+      - ACCEPT_EULA=Y
